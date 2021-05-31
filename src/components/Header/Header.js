@@ -7,7 +7,7 @@ import { useGlobalStateContext, useGlobalDispatchContext } from '../../Context/g
 import { Container, Flex } from '../../globalStyles'
 import { HeaderNav, Logo, Menu } from './headerStyle'
 
-const Header = () => {
+const Header = ({onCursor}) => {
 
     const dispatch = useGlobalDispatchContext()
     const {currentTheme} = useGlobalStateContext()
@@ -34,13 +34,22 @@ const Header = () => {
     }, [currentTheme])
 
     return (
-        <HeaderNav>
+        <HeaderNav 
+        animate={{y: 0, opacity: 1}}
+        initial= {{y: -82, opacity: 0}}
+        transition= {{duration: 1, ease: [0.6, 0.05, -0.01, 0.9]}}>
             <Container>
                 {console.log(currentTheme)}
                 <Flex spaceBetween noHeight>
-                    <Logo>
+                    <Logo
+                        onMouseEnter={() => onCursor("hovered")}
+                        onMouseLeave={onCursor}>
                         <Link to="/">UGR</Link>
-                        <span onClick={toggleTheme}></span>
+                        <span 
+                            onClick={toggleTheme}
+                            onMouseEnter={() => onCursor("pointer")}
+                            onMouseLeave={onCursor}>
+                        </span>
                         <Link to="/">TRK</Link>
                     </Logo>
                     <Menu>

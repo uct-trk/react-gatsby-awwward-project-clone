@@ -8,19 +8,22 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import {createGlobalStyle, ThemeProvider} from 'styled-components'
-import {normalize} from 'styled-normalize'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { normalize } from 'styled-normalize'
 
 // components
 import Header from "./Header/Header"
+import CustomCursor from "./customCursor"
 
 // context
-import { useGlobalStateContext } from '../Context/globalContext'
+import { useGlobalStateContext, useGlobalDispatchContext } from '../Context/globalContext'
+
 
 export const GlobalStyle = createGlobalStyle`
     ${normalize}
     *{
         text-decoration: none;
+        cursor: none;
     }
     html{
         box-sizing: border-box;
@@ -35,6 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `
 
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -45,13 +49,13 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  // theme temaların arkapalan rengi ve yazı rengi
   const darkTheme = {
     background: "#000",
     text: "#fff",
     red: "#ea291e",
   }
-
-  const {currentTheme} = useGlobalStateContext()
 
   const lightTheme = {
     background: "#fff",
@@ -59,13 +63,28 @@ const Layout = ({ children }) => {
     red: "#ea291e",
   }
 
+  // destruturinf ediyoruz verilerimizi
+  const { currentTheme, cursorStyles } = useGlobalStateContext()
+
+  const dispatch = useGlobalDispatchContext()
+
+  const onCursor = (cursorType) => {
+    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false
+    dispatch({
+      type: "CURSOR_TYPE",
+      cursorType: cursorType
+    })
+  }
+
+  
+
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
-    <GlobalStyle/>
-
-    <Header/>
+      <GlobalStyle />
+      <CustomCursor/>
+      <Header onCursor={onCursor}/>
       <main>{children}</main>
-   </ThemeProvider>
+    </ThemeProvider>
   )
 }
 
