@@ -14,6 +14,7 @@ import { normalize } from 'styled-normalize'
 // components
 import Header from "./Header/Header"
 import CustomCursor from "./customCursor"
+import Navigation from './Navigation/Navigation'
 
 // context
 import { useGlobalStateContext, useGlobalDispatchContext } from '../Context/globalContext'
@@ -26,15 +27,15 @@ export const GlobalStyle = createGlobalStyle`
         cursor: none;
     }
     html{
-        box-sizing: border-box;
-        font-size: 16px;
-        -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
     }
     body{
         background: ${props => props.theme.background};
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overscroll-behavior: none;
-        overflow-x: hidden;
+  overflow-x: hidden;
     }
 `
 
@@ -76,13 +77,15 @@ const Layout = ({ children }) => {
     })
   }
 
+  const [toggleMenu, setToggleMenu] = React.useState(false)
   
 
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <CustomCursor/>
-      <Header onCursor={onCursor}/>
+      <CustomCursor toggleMenu={toggleMenu}/>
+      <Header onCursor={onCursor} toggleMenu={toggleMenu} setToggleMenu={setToggleMenu}/>
+      <Navigation toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} onCursor={onCursor} />
       <main>{children}</main>
     </ThemeProvider>
   )

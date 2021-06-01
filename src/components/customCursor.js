@@ -6,7 +6,7 @@ import { useGlobalStateContext } from '../Context/globalContext';
 
 
 
-const CustomCursor = () => {
+const CustomCursor = ({toggleMenu}) => {
 
     // destructuring ediyoruz
     const { cursorType } = useGlobalStateContext()
@@ -31,7 +31,8 @@ const CustomCursor = () => {
 
     return (
         <>
-            <Cursor className={`${!!cursorType ? "hovered" : ""} ${cursorType}`} style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
+            <Cursor className={`${!!cursorType ? "hovered" : ""} ${cursorType} ${toggleMenu ? "nav-open" : ""}`} 
+            style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
         </>
     )
 }

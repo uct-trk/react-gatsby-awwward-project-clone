@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Banner, Video, Canvas, BannerTitle, Headline } from "./homeBannerStyles"
 
+import Video1 from './../../assets/video/video.mp4'
+
 // Custom Hook
 import useWindowSize from './../../hooks/useWindowSize'
 
@@ -93,7 +95,7 @@ const HomeBanner = ({onCursor}) => {
                     loop
                     autoPlay
                     muted
-                    src={require("../../assets/video/video.mp4")} />
+                    src={Video1} />
             </Video>
             <Canvas 
               onMouseLeave={onCursor} 
