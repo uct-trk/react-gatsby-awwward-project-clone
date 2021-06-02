@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Container, Flex } from '../../globalStyles'
 import { CloseNav, Nav, NavFooter, NavHeader, NavList, NavVideos } from './navigationStyles'
 
-
 const navRoutes = [
     {
         id: 0,
@@ -83,7 +82,7 @@ const Navigation = ({toggleMenu, setToggleMenu, onCursor}) => {
                                         video: route.video,
                                         key: route.id
                                     })}>
-                                        <Link to={`/projects/${route.path}`}>
+                                        <Link to={`/projects${route.path}`}>
                                             <motion.div initial={{ x: -100}} whileHover={{x: -40, transition:{
                                                 duration: 0.4, ease: [0.6, 0.05, -0.01, 0.9]
                                             }}} className="link">
