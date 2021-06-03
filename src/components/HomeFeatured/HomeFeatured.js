@@ -4,11 +4,11 @@ import Video1 from './../../assets/video/featured-video.mp4'
 import { Container, Flex } from '../../globalStyles'
 import {HomeFeaturedSection, FeaturedContent, FeaturedVideo, FeaturedProjects} from './homeFeaturedStyles'
 import { Link } from 'gatsby'
-import { motion } from 'framer-motion'
+
 
 // scroll behavior
 import {useInView} from 'react-intersection-observer'
-import {useAnimation} from 'framer-motion'
+import {useAnimation, motion} from 'framer-motion'
 
 
 const HomeFeatured = ({onCursor}) => {

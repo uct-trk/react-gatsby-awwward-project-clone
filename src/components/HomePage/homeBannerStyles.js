@@ -21,6 +21,7 @@ export const Canvas = styled.canvas`
   left: 0;
   height: 100%;
   display: block;
+  cursor: none;
 `
 
 export const BannerTitle = styled(motion.h1)`
