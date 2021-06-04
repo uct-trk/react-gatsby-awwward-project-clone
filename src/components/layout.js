@@ -15,9 +15,11 @@ import { normalize } from 'styled-normalize'
 import Header from "./Header/Header"
 import CustomCursor from "./customCursor"
 import Navigation from './Navigation/Navigation'
+import Footer from "./Footer/Footer"
 
 // context
 import { useGlobalStateContext, useGlobalDispatchContext } from '../Context/globalContext'
+import { useState } from "react"
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -51,17 +53,26 @@ const Layout = ({ children }) => {
     }
   `)
 
+    const [hamburgerPosition, setHamburgerPosition] = useState({
+      x: 0,
+      y: 0,
+    })
+
   // theme temaların arkapalan rengi ve yazı rengi
   const darkTheme = {
     background: "#000",
     text: "#fff",
     red: "#ea291e",
+    left: `${hamburgerPosition.x}px`,
+    top: `${hamburgerPosition.y}px`,
   }
 
   const lightTheme = {
     background: "#fff",
     text: "#000",
     red: "#ea291e",
+    left: `${hamburgerPosition.x}px`,
+    top: `${hamburgerPosition.y}px`,
   }
 
   // destruturinf ediyoruz verilerimizi
@@ -84,9 +95,10 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
       <CustomCursor toggleMenu={toggleMenu}/>
-      <Header onCursor={onCursor} toggleMenu={toggleMenu} setToggleMenu={setToggleMenu}/>
+      <Header hamburgerPosition={hamburgerPosition} setHamburgerPosition={setHamburgerPosition} onCursor={onCursor} toggleMenu={toggleMenu} setToggleMenu={setToggleMenu}/>
       <Navigation toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} onCursor={onCursor} />
       <main>{children}</main>
+      <Footer onCursor={onCursor}/>
     </ThemeProvider>
   )
 }

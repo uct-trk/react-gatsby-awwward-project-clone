@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const HomeAboutSection = styled(motion.div)`
-    margin-bottom: 200px;
-`
+export const HomeAboutSection = styled(motion.div)``
 
 
 export const About = styled.div`

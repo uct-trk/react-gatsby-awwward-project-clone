@@ -34,7 +34,7 @@ export const BannerTitle = styled(motion.h1)`
 
 export const Headline = styled(motion.span)`
   display: block;
-  font-size: 23rem;
+  font-size: 15rem;
   font-weight: 900;
   line-height: 0.76;
 `

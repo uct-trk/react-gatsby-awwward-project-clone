@@ -110,12 +110,12 @@ const HomeBanner = ({onCursor}) => {
                 <Headline  
                   initial={{y : 800}}
                   animate={{y: 0}}
-                  transition={{duration: 1,ease: [0.6, 0.05, -0.01, 0.9]}}
+                  transition={{duration: 1, ease: [0.6, 0.05, -0.01, 0.9]}}
                   >DIG</Headline>
                 <Headline
                   initial={{y : 800}}
                   animate={{y: 0}}
-                  transition={{duration: 1.2,ease: [0.6, 0.05, -0.01, 0.9]}}>DEEP</Headline>
+                  transition={{duration: 1.2, ease: [0.6, 0.05, -0.01, 0.9]}}>DEEP</Headline>
             </BannerTitle>
         </Banner>
     )

@@ -26,7 +26,6 @@ const globalReducer = (state, action) => {
 }
 
 //Provider
-
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme:
